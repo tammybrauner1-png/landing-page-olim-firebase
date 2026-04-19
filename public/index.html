@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
-<html lang="he" dir="rtl">
+<!DOCTYPE html>
+<html lang="he" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>עולים על הגל | מבית התדר — מעגלים לבני נוער בנתניה</title>
+    <title data-i18n-title="page.title">עולים על הגל | מבית התדר — מעגלים לבני נוער בנתניה</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Nunito:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Heebo', 'sans-serif'],
+                        sans: ['Heebo', 'Nunito', 'sans-serif'],
                     },
                     colors: {
                         brand: {
@@ -80,6 +80,8 @@
             background-color: #0F0B1A;
             color: #F8FAFC;
         }
+        body.lang-he { font-family: 'Heebo', sans-serif; }
+        body.lang-ru { font-family: 'Nunito', sans-serif; }
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
         input:focus, textarea:focus, select:focus {
@@ -164,13 +166,39 @@
             box-shadow: 0 8px 30px rgba(212,255,43,0.3);
             background: #E0FF5C;
         }
+        .lang-btn {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: transparent;
+            color: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .lang-btn.active {
+            background: rgba(167,139,250,0.18);
+            color: #A78BFA;
+            border-color: rgba(167,139,250,0.4);
+        }
+        .lang-btn:hover:not(.active) {
+            color: rgba(255,255,255,0.75);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
         @media (prefers-reduced-motion: reduce) {
             .animate-on-scroll { opacity: 1; transform: none; transition: none; }
             .animate-float, .animate-float-slow { animation: none; }
         }
     </style>
 </head>
-<body class="bg-brand-base text-brand-ink">
+<body class="bg-brand-base text-brand-ink lang-he">
 
     <!-- NAVBAR -->
     <nav class="fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] bg-brand-base/80 backdrop-blur-xl" id="navbar">
@@ -178,22 +206,27 @@
             <div class="flex items-center gap-3">
                 <img src="assets/logo-teder-tree.png" alt="לוגו התדר" class="h-10 w-10 object-contain brightness-0 invert">
                 <div class="flex h-10 items-center border-r border-white/10 pr-3">
-                    <div class="flex h-full items-center justify-center rounded-lg border border-dashed border-brand-accent/40 bg-white/5 px-2.5 text-center text-[0.65rem] font-bold leading-tight text-brand-muted">לוגו עיריית<br>נתניה</div>
+                    <div class="flex h-full items-center justify-center rounded-lg border border-dashed border-brand-accent/40 bg-white/5 px-2.5 text-center text-[0.65rem] font-bold leading-tight text-brand-muted" data-i18n-html="nav.logo2">לוגו עיריית<br>נתניה</div>
                 </div>
                 <div>
-                    <div class="text-base font-extrabold leading-none text-white">עולים על הגל</div>
-                    <div class="text-xs text-brand-subtle">מבית התדר</div>
+                    <div class="text-base font-extrabold leading-none text-white" data-i18n="nav.title">עולים על הגל</div>
+                    <div class="text-xs text-brand-subtle" data-i18n="nav.subtitle">מבית התדר</div>
                 </div>
             </div>
-            <a href="#register" class="btn-primary rounded-full px-5 py-2.5 text-sm font-bold text-white">
-                להשאיר פרטים ✨
-            </a>
+            <div class="flex items-center gap-3">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" id="btn-he" onclick="setLang('he')">עב</button>
+                    <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">РУ</button>
+                </div>
+                <a href="#register" class="btn-primary rounded-full px-5 py-2.5 text-sm font-bold text-white" data-i18n="nav.cta">
+                    להשאיר פרטים ✨
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero-gradient relative overflow-hidden pb-16 pt-28 md:pb-28 md:pt-40">
-        <!-- Floating decorative elements -->
         <div class="emoji-float top-[15%] right-[10%] animate-float text-3xl">🌊</div>
         <div class="emoji-float top-[60%] left-[8%] animate-float-slow text-2xl">💜</div>
         <div class="emoji-float bottom-[20%] right-[15%] animate-float text-2xl" style="animation-delay: 1s">⚡</div>
@@ -202,26 +235,26 @@
             <div class="flex flex-col items-start gap-5">
                 <div class="animate-on-scroll inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted backdrop-blur-sm">
                     <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-brand-lime"></span>
-                    לבני ובנות נוער בנתניה · עברית + רוסית · קבוצות קטנות
+                    <span data-i18n="hero.badge">לבני ובנות נוער בנתניה · עברית + רוסית · קבוצות קטנות</span>
                 </div>
 
                 <h1 class="animate-on-scroll delay-1 max-w-lg text-4xl font-black leading-[1.05] tracking-tight md:text-[3.5rem]">
-                    לא עוד סתם מסגרת.
-                    <span class="text-gradient block">מקום להכיר, להתחבר, ולהרגיש שייך/ת.</span>
+                    <span data-i18n="hero.h1.line1">לא עוד סתם מסגרת.</span>
+                    <span class="text-gradient block" data-i18n="hero.h1.line2">מקום להכיר, להתחבר, ולהרגיש שייך/ת.</span>
                 </h1>
 
-                <p class="animate-on-scroll delay-2 max-w-lg text-lg leading-8 text-brand-muted">
+                <p class="animate-on-scroll delay-2 max-w-lg text-lg leading-8 text-brand-muted" data-i18n-html="hero.desc">
                     &#8216;עולים על הגל&#8217; — מעגלים לבני ובנות נוער שרוצים להכיר אנשים חדשים, לדבר באמת, להרגיש יותר שייכים, ולצאת עם משהו אמיתי לעצמם.<br>
                     המעגלים מועברים בעברית וברוסית.
                 </p>
 
-                <a href="#register" class="animate-on-scroll delay-3 btn-lime inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-extrabold">
+                <a href="#register" class="animate-on-scroll delay-3 btn-lime inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-extrabold" data-i18n="hero.cta">
                     להשאיר פרטים למעגל הקרוב 🚀
                 </a>
 
-                <p class="animate-on-scroll delay-4 text-sm text-brand-subtle">אפשר לבוא גם אם לא מכירים אף אחד 💛</p>
+                <p class="animate-on-scroll delay-4 text-sm text-brand-subtle" data-i18n="hero.subtext">אפשר לבוא גם אם לא מכירים אף אחד 💛</p>
 
-                <div class="animate-on-scroll delay-4 flex items-center gap-2 rounded-full border border-white/8 bg-white/5 px-4 py-2 text-xs font-medium text-brand-subtle backdrop-blur-sm">
+                <div class="animate-on-scroll delay-4 flex items-center gap-2 rounded-full border border-white/8 bg-white/5 px-4 py-2 text-xs font-medium text-brand-subtle backdrop-blur-sm" data-i18n="hero.official">
                     תוכנית רשמית של עיריית נתניה ומרכז התדר
                 </div>
             </div>
@@ -232,7 +265,7 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-5 md:p-7">
                         <div class="glass-strong rounded-2xl p-4">
-                            <div class="text-lg font-bold text-white">בלי לחץ. בלי שיפוט. עם אנשים טובים. 🤝</div>
+                            <div class="text-lg font-bold text-white" data-i18n="hero.card.text">בלי לחץ. בלי שיפוט. עם אנשים טובים. 🤝</div>
                         </div>
                     </div>
                 </div>
@@ -244,30 +277,24 @@
     <section class="bg-brand-surface py-20">
         <div class="mx-auto max-w-5xl px-5 md:px-6">
             <div class="animate-on-scroll mb-12 max-w-2xl">
-                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-accent">למה בכלל לבוא? 🤔</p>
-                <h2 class="text-3xl font-black md:text-4xl">כי לפעמים כל מה שחסר זה מקום נכון, אנשים טובים, וקבוצה שאפשר להיות בה פשוט <span class="text-gradient-warm">אתה.</span></h2>
+                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-accent" data-i18n="why.label">למה בכלל לבוא? 🤔</p>
+                <h2 class="text-3xl font-black md:text-4xl" data-i18n-html="why.h2">כי לפעמים כל מה שחסר זה מקום נכון, אנשים טובים, וקבוצה שאפשר להיות בה פשוט <span class="text-gradient-warm">אתה.</span></h2>
             </div>
             <div class="grid gap-5 md:grid-cols-3">
                 <div class="animate-on-scroll glass card-glow rounded-3xl p-7 transition-all duration-300">
-                    <div class="mb-4 inline-flex rounded-2xl bg-brand-accentLight p-3">
-                        <span class="text-2xl">👋</span>
-                    </div>
-                    <h3 class="mb-2 text-xl font-bold text-white">אנשים חדשים</h3>
-                    <p class="leading-7 text-brand-muted">להכיר בני ובנות נוער בגילך, מרקעים שונים, ולבנות קשרים חדשים.</p>
+                    <div class="mb-4 inline-flex rounded-2xl bg-brand-accentLight p-3"><span class="text-2xl">👋</span></div>
+                    <h3 class="mb-2 text-xl font-bold text-white" data-i18n="why.card1.title">אנשים חדשים</h3>
+                    <p class="leading-7 text-brand-muted" data-i18n="why.card1.desc">להכיר בני ובנות נוער בגילך, מרקעים שונים, ולבנות קשרים חדשים.</p>
                 </div>
                 <div class="animate-on-scroll delay-1 glass card-glow rounded-3xl p-7 transition-all duration-300">
-                    <div class="mb-4 inline-flex rounded-2xl bg-brand-pinkSoft p-3">
-                        <span class="text-2xl">💪</span>
-                    </div>
-                    <h3 class="mb-2 text-xl font-bold text-white">משהו לעצמך</h3>
-                    <p class="leading-7 text-brand-muted">יותר ביטחון, יותר חיבור לעצמך, ויותר מקום להיות מי שאת/ה.</p>
+                    <div class="mb-4 inline-flex rounded-2xl bg-brand-pinkSoft p-3"><span class="text-2xl">💪</span></div>
+                    <h3 class="mb-2 text-xl font-bold text-white" data-i18n="why.card2.title">משהו לעצמך</h3>
+                    <p class="leading-7 text-brand-muted" data-i18n="why.card2.desc">יותר ביטחון, יותר חיבור לעצמך, ויותר מקום להיות מי שאת/ה.</p>
                 </div>
                 <div class="animate-on-scroll delay-2 glass card-glow rounded-3xl p-7 transition-all duration-300">
-                    <div class="mb-4 inline-flex rounded-2xl bg-brand-cyanSoft p-3">
-                        <span class="text-2xl">✨</span>
-                    </div>
-                    <h3 class="mb-2 text-xl font-bold text-white">מפגש אמיתי</h3>
-                    <p class="leading-7 text-brand-muted">לא עוד סתם להעביר זמן — להיות חלק מקבוצה עם וייב טוב ומשהו אמיתי.</p>
+                    <div class="mb-4 inline-flex rounded-2xl bg-brand-cyanSoft p-3"><span class="text-2xl">✨</span></div>
+                    <h3 class="mb-2 text-xl font-bold text-white" data-i18n="why.card3.title">מפגש אמיתי</h3>
+                    <p class="leading-7 text-brand-muted" data-i18n="why.card3.desc">לא עוד סתם להעביר זמן — להיות חלק מקבוצה עם וייב טוב ומשהו אמיתי.</p>
                 </div>
             </div>
         </div>
@@ -277,43 +304,41 @@
     <section class="bg-brand-base py-20">
         <div class="mx-auto max-w-5xl px-5 md:px-6">
             <div class="animate-on-scroll mb-12 max-w-2xl">
-                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-cyan">מה קורה במפגשים? 🎯</p>
-                <h2 class="mb-4 text-3xl font-black md:text-4xl">נפגשים, מכירים, <span class="text-gradient">מדברים באמת.</span></h2>
-                <p class="text-lg leading-8 text-brand-muted">
-                    במעגלים נפגשים, מכירים, מדברים באמת, עושים פעילויות קבוצתיות, ויוצרים מרחב שיש בו הקשבה, חיבור ואווירה טובה.
-                </p>
+                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-cyan" data-i18n="what.label">מה קורה במפגשים? 🎯</p>
+                <h2 class="mb-4 text-3xl font-black md:text-4xl" data-i18n-html="what.h2">נפגשים, מכירים, <span class="text-gradient">מדברים באמת.</span></h2>
+                <p class="text-lg leading-8 text-brand-muted" data-i18n="what.desc">במעגלים נפגשים, מכירים, מדברים באמת, עושים פעילויות קבוצתיות, ויוצרים מרחב שיש בו הקשבה, חיבור ואווירה טובה.</p>
             </div>
             <div class="grid gap-5 md:grid-cols-2">
                 <div class="animate-on-scroll glass card-glow flex gap-4 rounded-3xl p-6 transition-all duration-300">
                     <div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-accentLight text-2xl">🫂</div>
                     <div>
-                        <h3 class="mb-1 text-lg font-bold text-white">מכירים אנשים חדשים</h3>
-                        <p class="leading-7 text-brand-muted">בני ובנות נוער מכל מיני רקעים, באווירה פתוחה ולא שיפוטית.</p>
+                        <h3 class="mb-1 text-lg font-bold text-white" data-i18n="what.item1.title">מכירים אנשים חדשים</h3>
+                        <p class="leading-7 text-brand-muted" data-i18n="what.item1.desc">בני ובנות נוער מכל מיני רקעים, באווירה פתוחה ולא שיפוטית.</p>
                     </div>
                 </div>
                 <div class="animate-on-scroll delay-1 glass card-glow flex gap-4 rounded-3xl p-6 transition-all duration-300">
                     <div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-cyanSoft text-2xl">💬</div>
                     <div>
-                        <h3 class="mb-1 text-lg font-bold text-white">מדברים באמת</h3>
-                        <p class="leading-7 text-brand-muted">שיחות בגובה העיניים, בלי פוזה ובלי לחץ.</p>
+                        <h3 class="mb-1 text-lg font-bold text-white" data-i18n="what.item2.title">מדברים באמת</h3>
+                        <p class="leading-7 text-brand-muted" data-i18n="what.item2.desc">שיחות בגובה העיניים, בלי פוזה ובלי לחץ.</p>
                     </div>
                 </div>
                 <div class="animate-on-scroll delay-2 glass card-glow flex gap-4 rounded-3xl p-6 transition-all duration-300">
                     <div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-limeSoft text-2xl">🎮</div>
                     <div>
-                        <h3 class="mb-1 text-lg font-bold text-white">עושים פעילויות קבוצתיות</h3>
-                        <p class="leading-7 text-brand-muted">משחקים, תרגילים, מפגשים וחוויות שיוצרות חיבור.</p>
+                        <h3 class="mb-1 text-lg font-bold text-white" data-i18n="what.item3.title">עושים פעילויות קבוצתיות</h3>
+                        <p class="leading-7 text-brand-muted" data-i18n="what.item3.desc">משחקים, תרגילים, מפגשים וחוויות שיוצרות חיבור.</p>
                     </div>
                 </div>
                 <div class="animate-on-scroll delay-3 glass card-glow flex gap-4 rounded-3xl p-6 transition-all duration-300">
                     <div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-pinkSoft text-2xl">⭐</div>
                     <div>
-                        <h3 class="mb-1 text-lg font-bold text-white">פוגשים מנטור/ית מקצועי/ת</h3>
-                        <p class="leading-7 text-brand-muted">כל קבוצה מלווה על ידי מנטור/ית מעורר/ת השראה עם ניסיון בעבודה עם בני נוער.</p>
+                        <h3 class="mb-1 text-lg font-bold text-white" data-i18n="what.item4.title">פוגשים מנטור/ית מקצועי/ת</h3>
+                        <p class="leading-7 text-brand-muted" data-i18n="what.item4.desc">כל קבוצה מלווה על ידי מנטור/ית מעורר/ת השראה עם ניסיון בעבודה עם בני נוער.</p>
                     </div>
                 </div>
             </div>
-            <p class="mt-8 text-sm text-brand-subtle">זה לא שיעור. זה לא טיפול. וזה לא עוד מסגרת כבדה. 🙅</p>
+            <p class="mt-8 text-sm text-brand-subtle" data-i18n="what.footer">זה לא שיעור. זה לא טיפול. וזה לא עוד מסגרת כבדה. 🙅</p>
         </div>
     </section>
 
@@ -321,17 +346,17 @@
     <section class="relative overflow-hidden bg-brand-surface py-20">
         <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent"></div>
         <div class="relative z-10 mx-auto max-w-3xl px-5 text-center md:px-6">
-            <p class="animate-on-scroll mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-pink">למי זה מתאים? 🎯</p>
-            <h2 class="animate-on-scroll delay-1 mb-4 text-3xl font-black md:text-4xl">זה מתאים לך אם בא לך:</h2>
+            <p class="animate-on-scroll mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-pink" data-i18n="who.label">למי זה מתאים? 🎯</p>
+            <h2 class="animate-on-scroll delay-1 mb-4 text-3xl font-black md:text-4xl" data-i18n="who.h2">זה מתאים לך אם בא לך:</h2>
             <div class="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-3">
-                <span class="animate-on-scroll chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm">להכיר אנשים חדשים 👋</span>
-                <span class="animate-on-scroll delay-1 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm">להרגיש יותר שייך/ת 💜</span>
-                <span class="animate-on-scroll delay-2 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm">להיות חלק מקבוצה עם וייב טוב 🔥</span>
-                <span class="animate-on-scroll delay-3 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm">לצאת קצת מהשגרה 🌊</span>
-                <span class="animate-on-scroll delay-4 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm">למצוא מקום שמרגיש אמיתי 🌟</span>
+                <span class="animate-on-scroll chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm" data-i18n="who.chip1">להכיר אנשים חדשים 👋</span>
+                <span class="animate-on-scroll delay-1 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm" data-i18n="who.chip2">להרגיש יותר שייך/ת 💜</span>
+                <span class="animate-on-scroll delay-2 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm" data-i18n="who.chip3">להיות חלק מקבוצה עם וייב טוב 🔥</span>
+                <span class="animate-on-scroll delay-3 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm" data-i18n="who.chip4">לצאת קצת מהשגרה 🌊</span>
+                <span class="animate-on-scroll delay-4 chip-interest cursor-default rounded-full border border-white/10 bg-white/5 px-5 py-3 text-base font-medium text-brand-muted backdrop-blur-sm" data-i18n="who.chip5">למצוא מקום שמרגיש אמיתי 🌟</span>
             </div>
             <div class="animate-on-scroll mt-10">
-                <a href="#register" class="btn-primary inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-bold text-white">
+                <a href="#register" class="btn-primary inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-bold text-white" data-i18n="who.cta">
                     נראה לי שזה מתאים לי ✌️
                 </a>
             </div>
@@ -342,33 +367,27 @@
     <section class="bg-brand-base py-20">
         <div class="mx-auto max-w-5xl px-5 md:px-6">
             <div class="animate-on-scroll mb-12 max-w-2xl">
-                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-lime">למה זה מרגיש אחרת? 💡</p>
-                <h2 class="text-3xl font-black md:text-4xl">מקום לפגוש, להתחבר, <span class="text-gradient">ולהרגיש חלק.</span></h2>
+                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-lime" data-i18n="trust.label">למה זה מרגיש אחרת? 💡</p>
+                <h2 class="text-3xl font-black md:text-4xl" data-i18n-html="trust.h2">מקום לפגוש, להתחבר, <span class="text-gradient">ולהרגיש חלק.</span></h2>
             </div>
             <div class="grid gap-5 md:grid-cols-3">
                 <div class="animate-on-scroll glass card-glow rounded-3xl p-7 transition-all duration-300">
-                    <div class="mb-4 inline-flex rounded-2xl bg-brand-accentLight p-3">
-                        <span class="text-2xl">🫶</span>
-                    </div>
-                    <h3 class="mb-2 text-xl font-bold text-white">קבוצות קטנות</h3>
-                    <p class="leading-7 text-brand-muted">אווירה אישית ונעימה, לא המונית ולא מלחיצה.</p>
+                    <div class="mb-4 inline-flex rounded-2xl bg-brand-accentLight p-3"><span class="text-2xl">🫶</span></div>
+                    <h3 class="mb-2 text-xl font-bold text-white" data-i18n="trust.card1.title">קבוצות קטנות</h3>
+                    <p class="leading-7 text-brand-muted" data-i18n="trust.card1.desc">אווירה אישית ונעימה, לא המונית ולא מלחיצה.</p>
                 </div>
                 <div class="animate-on-scroll delay-1 glass card-glow rounded-3xl p-7 transition-all duration-300">
-                    <div class="mb-4 inline-flex rounded-2xl bg-brand-cyanSoft p-3">
-                        <span class="text-2xl">🏅</span>
-                    </div>
-                    <h3 class="mb-2 text-xl font-bold text-white">מנטור מקצועי</h3>
-                    <p class="leading-7 text-brand-muted">ליווי של איש/אשת מקצוע שיודעים לעבוד עם בני נוער באמת.</p>
+                    <div class="mb-4 inline-flex rounded-2xl bg-brand-cyanSoft p-3"><span class="text-2xl">🏅</span></div>
+                    <h3 class="mb-2 text-xl font-bold text-white" data-i18n="trust.card2.title">מנטור מקצועי</h3>
+                    <p class="leading-7 text-brand-muted" data-i18n="trust.card2.desc">ליווי של איש/אשת מקצוע שיודעים לעבוד עם בני נוער באמת.</p>
                 </div>
                 <div class="animate-on-scroll delay-2 glass card-glow rounded-3xl p-7 transition-all duration-300">
-                    <div class="mb-4 inline-flex rounded-2xl bg-brand-limeSoft p-3">
-                        <span class="text-2xl">🌍</span>
-                    </div>
-                    <h3 class="mb-2 text-xl font-bold text-white">עברית + רוסית</h3>
-                    <p class="leading-7 text-brand-muted">מרחב שמאפשר חיבור בין בני נוער שונים בעיר, בעברית וברוסית.</p>
+                    <div class="mb-4 inline-flex rounded-2xl bg-brand-limeSoft p-3"><span class="text-2xl">🌍</span></div>
+                    <h3 class="mb-2 text-xl font-bold text-white" data-i18n="trust.card3.title">עברית + רוסית</h3>
+                    <p class="leading-7 text-brand-muted" data-i18n="trust.card3.desc">מרחב שמאפשר חיבור בין בני נוער שונים בעיר, בעברית וברוסית.</p>
                 </div>
             </div>
-            <p class="mt-8 text-sm text-brand-subtle">לתלמידי התיכון: התוכנית מוכרת גם כשעות מעורבות חברתית. 📝</p>
+            <p class="mt-8 text-sm text-brand-subtle" data-i18n="trust.footer">לתלמידי התיכון: התוכנית מוכרת גם כשעות מעורבות חברתית. 📝</p>
         </div>
     </section>
 
@@ -376,51 +395,51 @@
     <section class="bg-brand-surface py-20">
         <div class="mx-auto max-w-3xl px-5 md:px-6">
             <div class="animate-on-scroll mb-10 text-center">
-                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-accent">שאלות נפוצות ❓</p>
-                <h2 class="text-3xl font-black">לפני שמצטרפים</h2>
+                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-accent" data-i18n="faq.label">שאלות נפוצות ❓</p>
+                <h2 class="text-3xl font-black" data-i18n="faq.h2">לפני שמצטרפים</h2>
             </div>
             <div class="space-y-3">
                 <details class="animate-on-scroll group glass overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand-accent/30">
                     <summary class="flex cursor-pointer items-center justify-between p-5 text-lg font-bold text-white">
-                        <span>צריך לבוא עם מישהו?</span>
+                        <span data-i18n="faq.q1">צריך לבוא עם מישהו?</span>
                         <span class="rounded-full bg-white/5 p-2 transition group-open:-rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                     </summary>
-                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted">ממש לא. הרבה מגיעים לבד, וזה חלק מהעניין — להכיר אנשים חדשים גם אם לא באים עם חבר/ה.</div>
+                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted" data-i18n="faq.a1">ממש לא. הרבה מגיעים לבד, וזה חלק מהעניין — להכיר אנשים חדשים גם אם לא באים עם חבר/ה.</div>
                 </details>
                 <details class="animate-on-scroll delay-1 group glass overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand-accent/30">
                     <summary class="flex cursor-pointer items-center justify-between p-5 text-lg font-bold text-white">
-                        <span>זה מתאים גם אם אני ביישן/ית?</span>
+                        <span data-i18n="faq.q2">זה מתאים גם אם אני ביישן/ית?</span>
                         <span class="rounded-full bg-white/5 p-2 transition group-open:-rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                     </summary>
-                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted">כן. לא צריך להיות דברן/ית או 'זורם/ת' כדי להשתלב. יש מקום גם למי שלוקח לו זמן להיפתח.</div>
+                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted" data-i18n="faq.a2">כן. לא צריך להיות דברן/ית או 'זורם/ת' כדי להשתלב. יש מקום גם למי שלוקח לו זמן להיפתח.</div>
                 </details>
                 <details class="animate-on-scroll delay-2 group glass overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand-accent/30">
                     <summary class="flex cursor-pointer items-center justify-between p-5 text-lg font-bold text-white">
-                        <span>חייבים לדבר?</span>
+                        <span data-i18n="faq.q3">חייבים לדבר?</span>
                         <span class="rounded-full bg-white/5 p-2 transition group-open:-rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                     </summary>
-                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted">לא. אפשר גם להקשיב, להרגיש את האווירה, ולהיכנס לקצב שלך.</div>
+                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted" data-i18n="faq.a3">לא. אפשר גם להקשיב, להרגיש את האווירה, ולהיכנס לקצב שלך.</div>
                 </details>
                 <details class="animate-on-scroll delay-3 group glass overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand-accent/30">
                     <summary class="flex cursor-pointer items-center justify-between p-5 text-lg font-bold text-white">
-                        <span>באיזו שפה זה מתקיים?</span>
+                        <span data-i18n="faq.q4">באיזו שפה זה מתקיים?</span>
                         <span class="rounded-full bg-white/5 p-2 transition group-open:-rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                     </summary>
-                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted">המעגלים מועברים בעברית וברוסית, כדי לאפשר מרחב פתוח ומחבר לבני ובנות נוער שונים בעיר.</div>
+                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted" data-i18n="faq.a4">המעגלים מועברים בעברית וברוסית, כדי לאפשר מרחב פתוח ומחבר לבני ובנות נוער שונים בעיר.</div>
                 </details>
                 <details class="animate-on-scroll delay-4 group glass overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand-accent/30">
                     <summary class="flex cursor-pointer items-center justify-between p-5 text-lg font-bold text-white">
-                        <span>מי מעביר את המפגשים?</span>
+                        <span data-i18n="faq.q5">מי מעביר את המפגשים?</span>
                         <span class="rounded-full bg-white/5 p-2 transition group-open:-rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                     </summary>
-                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted">כל קבוצה מלווה על ידי מנטור/ית מקצועי/ת ומעורר/ת השראה עם ניסיון בעבודה עם בני נוער.</div>
+                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted" data-i18n="faq.a5">כל קבוצה מלווה על ידי מנטור/ית מקצועי/ת ומעורר/ת השראה עם ניסיון בעבודה עם בני נוער.</div>
                 </details>
                 <details class="animate-on-scroll delay-4 group glass overflow-hidden rounded-2xl transition-all duration-300 hover:border-brand-accent/30">
                     <summary class="flex cursor-pointer items-center justify-between p-5 text-lg font-bold text-white">
-                        <span>איך יודעים אם זה בשבילי?</span>
+                        <span data-i18n="faq.q6">איך יודעים אם זה בשבילי?</span>
                         <span class="rounded-full bg-white/5 p-2 transition group-open:-rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                     </summary>
-                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted">אם משהו פה הרגיש לך נכון — שווה להשאיר פרטים ולשמוע על המעגל הקרוב.</div>
+                    <div class="border-t border-white/5 px-5 pb-5 pt-3 leading-8 text-brand-muted" data-i18n="faq.a6">אם משהו פה הרגיש לך נכון — שווה להשאיר פרטים ולשמוע על המעגל הקרוב.</div>
                 </details>
             </div>
         </div>
@@ -434,20 +453,20 @@
                 <div class="absolute -top-8 -left-8 h-24 w-24 rounded-full bg-brand-accent/15 blur-2xl"></div>
                 <div class="absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-brand-cyan/10 blur-2xl"></div>
                 <div class="relative z-10 mb-8 text-center">
-                    <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-accent">להצטרף למעגל הקרוב 🎉</p>
-                    <h2 class="mb-2 text-2xl font-black md:text-3xl">מרגיש לך שזה מדבר אליך?</h2>
-                    <p class="leading-7 text-brand-muted">משאירים פרטים, בוחרים מה מתאים, ונחזור אליך עם פרטים על המעגל הקרוב. בלי לחץ, בלי התחייבות.</p>
+                    <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-brand-accent" data-i18n="form.label">להצטרף למעגל הקרוב 🎉</p>
+                    <h2 class="mb-2 text-2xl font-black md:text-3xl" data-i18n="form.h2">מרגיש לך שזה מדבר אליך?</h2>
+                    <p class="leading-7 text-brand-muted" data-i18n="form.desc">משאירים פרטים, בוחרים מה מתאים, ונחזור אליך עם פרטים על המעגל הקרוב. בלי לחץ, בלי התחייבות.</p>
                 </div>
                 <form id="tederForm" class="relative z-10 space-y-5" onsubmit="submitForm(event)">
                     <div class="space-y-1.5">
-                        <label for="fullName" class="block text-sm font-bold text-brand-muted">שם מלא *</label>
-                        <input type="text" id="fullName" required placeholder="שם מלא" class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white placeholder-white/25 transition-colors focus:bg-white/8">
+                        <label for="fullName" class="block text-sm font-bold text-brand-muted" data-i18n="form.name.label">שם מלא *</label>
+                        <input type="text" id="fullName" required data-i18n-placeholder="form.name.placeholder" placeholder="שם מלא" class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white placeholder-white/25 transition-colors focus:bg-white/8">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-1.5">
-                            <label for="age" class="block text-sm font-bold text-brand-muted">גיל *</label>
+                            <label for="age" class="block text-sm font-bold text-brand-muted" data-i18n="form.age.label">גיל *</label>
                             <select id="age" required class="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white transition-colors focus:bg-white/8">
-                                <option value="" disabled selected>בחר/י</option>
+                                <option value="" disabled selected data-i18n="form.select">בחר/י</option>
                                 <option value="12">12</option>
                                 <option value="13">13</option>
                                 <option value="14">14</option>
@@ -458,89 +477,89 @@
                             </select>
                         </div>
                         <div class="space-y-1.5">
-                            <label for="grade" class="block text-sm font-bold text-brand-muted">כיתה *</label>
+                            <label for="grade" class="block text-sm font-bold text-brand-muted" data-i18n="form.grade.label">כיתה *</label>
                             <select id="grade" required class="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white transition-colors focus:bg-white/8">
-                                <option value="" disabled selected>בחר/י</option>
-                                <option value="ז">ז'</option>
-                                <option value="ח">ח'</option>
-                                <option value="ט">ט'</option>
-                                <option value="י">י'</option>
-                                <option value="יא">י"א</option>
-                                <option value="יב">י"ב</option>
+                                <option value="" disabled selected data-i18n="form.select">בחר/י</option>
+                                <option value="ז" data-i18n-opt="form.grade.7">ז'</option>
+                                <option value="ח" data-i18n-opt="form.grade.8">ח'</option>
+                                <option value="ט" data-i18n-opt="form.grade.9">ט'</option>
+                                <option value="י" data-i18n-opt="form.grade.10">י'</option>
+                                <option value="יא" data-i18n-opt="form.grade.11">י"א</option>
+                                <option value="יב" data-i18n-opt="form.grade.12">י"ב</option>
                             </select>
                         </div>
                     </div>
                     <div class="space-y-1.5">
-                        <label for="school" class="block text-sm font-bold text-brand-muted">בית ספר *</label>
-                        <input type="text" id="school" required placeholder="שם בית הספר" class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white placeholder-white/25 transition-colors focus:bg-white/8">
+                        <label for="school" class="block text-sm font-bold text-brand-muted" data-i18n="form.school.label">בית ספר *</label>
+                        <input type="text" id="school" required data-i18n-placeholder="form.school.placeholder" placeholder="שם בית הספר" class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white placeholder-white/25 transition-colors focus:bg-white/8">
                     </div>
                     <div class="space-y-1.5">
-                        <label for="phone" class="block text-sm font-bold text-brand-muted">טלפון (לוואטסאפ) *</label>
+                        <label for="phone" class="block text-sm font-bold text-brand-muted" data-i18n="form.phone.label">טלפון (לוואטסאפ) *</label>
                         <input type="tel" id="phone" required placeholder="05X-XXXXXXX" dir="ltr" class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-right text-white placeholder-white/25 transition-colors focus:bg-white/8">
                     </div>
                     <div class="space-y-1.5">
-                        <label for="preferredDay" class="block text-sm font-bold text-brand-muted">איזה יום מתאים לך יותר?</label>
+                        <label for="preferredDay" class="block text-sm font-bold text-brand-muted" data-i18n="form.day.label">איזה יום מתאים לך יותר?</label>
                         <select id="preferredDay" class="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white transition-colors focus:bg-white/8">
-                            <option value="" disabled selected>בחר/י</option>
-                            <option value="ראשון">ראשון</option>
-                            <option value="שני">שני</option>
-                            <option value="שלישי">שלישי</option>
-                            <option value="רביעי">רביעי</option>
-                            <option value="חמישי">חמישי</option>
-                            <option value="גמיש">גמיש</option>
+                            <option value="" disabled selected data-i18n="form.select">בחר/י</option>
+                            <option value="ראשון" data-i18n-opt="form.day.sun">ראשון</option>
+                            <option value="שני" data-i18n-opt="form.day.mon">שני</option>
+                            <option value="שלישי" data-i18n-opt="form.day.tue">שלישי</option>
+                            <option value="רביעי" data-i18n-opt="form.day.wed">רביעי</option>
+                            <option value="חמישי" data-i18n-opt="form.day.thu">חמישי</option>
+                            <option value="גמיש" data-i18n-opt="form.flexible">גמיש</option>
                         </select>
                     </div>
                     <div class="space-y-1.5">
-                        <label for="preferredTime" class="block text-sm font-bold text-brand-muted">איזה חלון זמן מתאים לך יותר?</label>
+                        <label for="preferredTime" class="block text-sm font-bold text-brand-muted" data-i18n="form.time.label">איזה חלון זמן מתאים לך יותר?</label>
                         <select id="preferredTime" class="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white transition-colors focus:bg-white/8">
-                            <option value="" disabled selected>בחר/י</option>
-                            <option value="14:00-16:00">14:00-16:00</option>
-                            <option value="16:00-18:00">16:00-18:00</option>
-                            <option value="18:00-20:00">18:00-20:00</option>
-                            <option value="גמיש">גמיש</option>
+                            <option value="" disabled selected data-i18n="form.select">בחר/י</option>
+                            <option value="14:00-16:00">14:00–16:00</option>
+                            <option value="16:00-18:00">16:00–18:00</option>
+                            <option value="18:00-20:00">18:00–20:00</option>
+                            <option value="גמיש" data-i18n-opt="form.flexible">גמיש</option>
                         </select>
                     </div>
                     <div class="space-y-2 pt-1">
-                        <label class="block text-sm font-bold text-brand-muted">מה הכי דיבר אליך? (אפשר לבחור כמה)</label>
+                        <label class="block text-sm font-bold text-brand-muted" data-i18n="form.chips.label">מה הכי דיבר אליך? (אפשר לבחור כמה)</label>
                         <div class="flex flex-wrap gap-2">
                             <div class="relative">
                                 <input type="checkbox" id="chip1" class="peer sr-only">
-                                <label for="chip1" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white">להכיר אנשים חדשים</label>
+                                <label for="chip1" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white" data-i18n="form.chip1">להכיר אנשים חדשים</label>
                             </div>
                             <div class="relative">
                                 <input type="checkbox" id="chip2" class="peer sr-only">
-                                <label for="chip2" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white">להרגיש יותר שייך/ת</label>
+                                <label for="chip2" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white" data-i18n="form.chip2">להרגיש יותר שייך/ת</label>
                             </div>
                             <div class="relative">
                                 <input type="checkbox" id="chip3" class="peer sr-only">
-                                <label for="chip3" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white">לקבל משהו לעצמי</label>
+                                <label for="chip3" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white" data-i18n="form.chip3">לקבל משהו לעצמי</label>
                             </div>
                             <div class="relative">
                                 <input type="checkbox" id="chip4" class="peer sr-only">
-                                <label for="chip4" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white">להיות חלק ממשהו עם משמעות</label>
+                                <label for="chip4" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white" data-i18n="form.chip4">להיות חלק ממשהו עם משמעות</label>
                             </div>
                             <div class="relative">
                                 <input type="checkbox" id="chip5" class="peer sr-only">
-                                <label for="chip5" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white">וייב טוב / קבוצה טובה</label>
+                                <label for="chip5" class="inline-block cursor-pointer select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-muted transition-all hover:bg-white/10 peer-checked:border-brand-accent peer-checked:bg-brand-accent peer-checked:text-white" data-i18n="form.chip5">וייב טוב / קבוצה טובה</label>
                             </div>
                         </div>
                     </div>
                     <div class="space-y-1.5">
-                        <label for="motivationText" class="block text-sm font-bold text-brand-muted">מה גרם לך לרצות להצטרף? <span class="font-normal text-brand-subtle">(לא חובה)</span></label>
-                        <textarea id="motivationText" rows="2" placeholder="ספר/י לנו בכמה מילים..." class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white placeholder-white/25 transition-colors focus:bg-white/8"></textarea>
+                        <label for="motivationText" class="block text-sm font-bold text-brand-muted" data-i18n-html="form.motivation.label">מה גרם לך לרצות להצטרף? <span class="font-normal text-brand-subtle">(לא חובה)</span></label>
+                        <textarea id="motivationText" rows="2" data-i18n-placeholder="form.motivation.placeholder" placeholder="ספר/י לנו בכמה מילים..." class="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-white placeholder-white/25 transition-colors focus:bg-white/8"></textarea>
                     </div>
                     <div class="pt-1">
                         <button type="submit" class="btn-lime flex w-full items-center justify-center gap-2 rounded-xl py-4 text-lg font-extrabold shadow-lg">
-                            להשאיר פרטים למעגל הקרוב 🚀
+                            <span data-i18n="form.submit">להשאיר פרטים למעגל הקרוב 🚀</span>
                             <i data-lucide="send" class="h-5 w-5"></i>
                         </button>
                     </div>
                 </form>
                 <div id="successState" class="absolute inset-0 z-20 hidden flex-col items-center justify-center rounded-[2rem] bg-brand-card p-8 text-center">
                     <div class="mb-5 text-5xl">🎉</div>
-                    <h3 class="mb-2 text-2xl font-bold text-white">איזה כיף, הפרטים התקבלו!</h3>
-                    <p class="mb-6 max-w-sm leading-7 text-brand-muted">ניצור איתך קשר ממש בקרוב עם פרטים על המעגל הקרוב שמתאים לגיל שלך.</p>
-                    <button onclick="resetForm()" class="font-bold text-brand-accent hover:text-brand-accentHover hover:underline">חזרה לדף</button>
+                    <h3 class="mb-2 text-2xl font-bold text-white" data-i18n="form.success.title">איזה כיף, הפרטים התקבלו!</h3>
+                    <p class="mb-6 max-w-sm leading-7 text-brand-muted" data-i18n="form.success.desc">ניצור איתך קשר ממש בקרוב עם פרטים על המעגל הקרוב שמתאים לגיל שלך.</p>
+                    <button onclick="resetForm()" class="font-bold text-brand-accent hover:text-brand-accentHover hover:underline" data-i18n="form.success.back">חזרה לדף</button>
                 </div>
             </div>
         </div>
@@ -552,25 +571,274 @@
             <div class="flex items-center gap-3 text-white">
                 <img src="assets/logo-teder-tree.png" alt="לוגו התדר" class="h-9 w-9 object-contain brightness-0 invert">
                 <div>
-                    <div class="text-base font-extrabold">עולים על הגל</div>
-                    <div class="text-xs text-white/40">מבית התדר</div>
+                    <div class="text-base font-extrabold" data-i18n="footer.title">עולים על הגל</div>
+                    <div class="text-xs text-white/40" data-i18n="footer.subtitle">מבית התדר</div>
                 </div>
             </div>
             <div class="flex flex-col items-center gap-1 text-xs md:items-end">
-                <div class="text-white/30">בשיתוף עיריית נתניה</div>
-                <div class="text-white/40">© 2026 עולים על הגל. כל הזכויות שמורות.</div>
+                <div class="text-white/30" data-i18n="footer.partner">בשיתוף עיריית נתניה</div>
+                <div class="text-white/40" data-i18n="footer.copy">© 2026 עולים על הגל. כל הזכויות שמורות.</div>
             </div>
         </div>
     </footer>
 
     <!-- MOBILE STICKY CTA -->
     <div class="fixed bottom-0 left-0 right-0 z-40 translate-y-full border-t border-white/[0.06] bg-brand-base/95 p-3 backdrop-blur-xl transition-transform duration-300 md:hidden" id="mobileStickyCta">
-        <a href="#register" class="btn-lime flex w-full items-center justify-center rounded-xl py-3.5 text-base font-extrabold shadow-lg">
+        <a href="#register" class="btn-lime flex w-full items-center justify-center rounded-xl py-3.5 text-base font-extrabold shadow-lg" data-i18n="hero.cta">
             להשאיר פרטים למעגל הקרוב 🚀
         </a>
     </div>
 
     <script>
+        // ─── TRANSLATIONS ─────────────────────────────────────────────────────────
+        const translations = {
+            he: {
+                'page.title': 'עולים על הגל | מבית התדר — מעגלים לבני נוער בנתניה',
+                'nav.logo2': 'לוגו עיריית<br>נתניה',
+                'nav.title': 'עולים על הגל',
+                'nav.subtitle': 'מבית התדר',
+                'nav.cta': 'להשאיר פרטים ✨',
+                'hero.badge': 'לבני ובנות נוער בנתניה · עברית + רוסית · קבוצות קטנות',
+                'hero.h1.line1': 'לא עוד סתם מסגרת.',
+                'hero.h1.line2': 'מקום להכיר, להתחבר, ולהרגיש שייך/ת.',
+                'hero.desc': '&#8216;עולים על הגל&#8217; — מעגלים לבני ובנות נוער שרוצים להכיר אנשים חדשים, לדבר באמת, להרגיש יותר שייכים, ולצאת עם משהו אמיתי לעצמם.<br>המעגלים מועברים בעברית וברוסית.',
+                'hero.cta': 'להשאיר פרטים למעגל הקרוב 🚀',
+                'hero.subtext': 'אפשר לבוא גם אם לא מכירים אף אחד 💛',
+                'hero.official': 'תוכנית רשמית של עיריית נתניה ומרכז התדר',
+                'hero.card.text': 'בלי לחץ. בלי שיפוט. עם אנשים טובים. 🤝',
+                'why.label': 'למה בכלל לבוא? 🤔',
+                'why.h2': 'כי לפעמים כל מה שחסר זה מקום נכון, אנשים טובים, וקבוצה שאפשר להיות בה פשוט <span class="text-gradient-warm">אתה.</span>',
+                'why.card1.title': 'אנשים חדשים',
+                'why.card1.desc': 'להכיר בני ובנות נוער בגילך, מרקעים שונים, ולבנות קשרים חדשים.',
+                'why.card2.title': 'משהו לעצמך',
+                'why.card2.desc': 'יותר ביטחון, יותר חיבור לעצמך, ויותר מקום להיות מי שאת/ה.',
+                'why.card3.title': 'מפגש אמיתי',
+                'why.card3.desc': 'לא עוד סתם להעביר זמן — להיות חלק מקבוצה עם וייב טוב ומשהו אמיתי.',
+                'what.label': 'מה קורה במפגשים? 🎯',
+                'what.h2': 'נפגשים, מכירים, <span class="text-gradient">מדברים באמת.</span>',
+                'what.desc': 'במעגלים נפגשים, מכירים, מדברים באמת, עושים פעילויות קבוצתיות, ויוצרים מרחב שיש בו הקשבה, חיבור ואווירה טובה.',
+                'what.item1.title': 'מכירים אנשים חדשים',
+                'what.item1.desc': 'בני ובנות נוער מכל מיני רקעים, באווירה פתוחה ולא שיפוטית.',
+                'what.item2.title': 'מדברים באמת',
+                'what.item2.desc': 'שיחות בגובה העיניים, בלי פוזה ובלי לחץ.',
+                'what.item3.title': 'עושים פעילויות קבוצתיות',
+                'what.item3.desc': 'משחקים, תרגילים, מפגשים וחוויות שיוצרות חיבור.',
+                'what.item4.title': 'פוגשים מנטור/ית מקצועי/ת',
+                'what.item4.desc': 'כל קבוצה מלווה על ידי מנטור/ית מעורר/ת השראה עם ניסיון בעבודה עם בני נוער.',
+                'what.footer': 'זה לא שיעור. זה לא טיפול. וזה לא עוד מסגרת כבדה. 🙅',
+                'who.label': 'למי זה מתאים? 🎯',
+                'who.h2': 'זה מתאים לך אם בא לך:',
+                'who.chip1': 'להכיר אנשים חדשים 👋',
+                'who.chip2': 'להרגיש יותר שייך/ת 💜',
+                'who.chip3': 'להיות חלק מקבוצה עם וייב טוב 🔥',
+                'who.chip4': 'לצאת קצת מהשגרה 🌊',
+                'who.chip5': 'למצוא מקום שמרגיש אמיתי 🌟',
+                'who.cta': 'נראה לי שזה מתאים לי ✌️',
+                'trust.label': 'למה זה מרגיש אחרת? 💡',
+                'trust.h2': 'מקום לפגוש, להתחבר, <span class="text-gradient">ולהרגיש חלק.</span>',
+                'trust.card1.title': 'קבוצות קטנות',
+                'trust.card1.desc': 'אווירה אישית ונעימה, לא המונית ולא מלחיצה.',
+                'trust.card2.title': 'מנטור מקצועי',
+                'trust.card2.desc': 'ליווי של איש/אשת מקצוע שיודעים לעבוד עם בני נוער באמת.',
+                'trust.card3.title': 'עברית + רוסית',
+                'trust.card3.desc': 'מרחב שמאפשר חיבור בין בני נוער שונים בעיר, בעברית וברוסית.',
+                'trust.footer': 'לתלמידי התיכון: התוכנית מוכרת גם כשעות מעורבות חברתית. 📝',
+                'faq.label': 'שאלות נפוצות ❓',
+                'faq.h2': 'לפני שמצטרפים',
+                'faq.q1': 'צריך לבוא עם מישהו?',
+                'faq.a1': 'ממש לא. הרבה מגיעים לבד, וזה חלק מהעניין — להכיר אנשים חדשים גם אם לא באים עם חבר/ה.',
+                'faq.q2': 'זה מתאים גם אם אני ביישן/ית?',
+                'faq.a2': "כן. לא צריך להיות דברן/ית או 'זורם/ת' כדי להשתלב. יש מקום גם למי שלוקח לו זמן להיפתח.",
+                'faq.q3': 'חייבים לדבר?',
+                'faq.a3': 'לא. אפשר גם להקשיב, להרגיש את האווירה, ולהיכנס לקצב שלך.',
+                'faq.q4': 'באיזו שפה זה מתקיים?',
+                'faq.a4': 'המעגלים מועברים בעברית וברוסית, כדי לאפשר מרחב פתוח ומחבר לבני ובנות נוער שונים בעיר.',
+                'faq.q5': 'מי מעביר את המפגשים?',
+                'faq.a5': 'כל קבוצה מלווה על ידי מנטור/ית מקצועי/ת ומעורר/ת השראה עם ניסיון בעבודה עם בני נוער.',
+                'faq.q6': 'איך יודעים אם זה בשבילי?',
+                'faq.a6': 'אם משהו פה הרגיש לך נכון — שווה להשאיר פרטים ולשמוע על המעגל הקרוב.',
+                'form.label': 'להצטרף למעגל הקרוב 🎉',
+                'form.h2': 'מרגיש לך שזה מדבר אליך?',
+                'form.desc': 'משאירים פרטים, בוחרים מה מתאים, ונחזור אליך עם פרטים על המעגל הקרוב. בלי לחץ, בלי התחייבות.',
+                'form.name.label': 'שם מלא *',
+                'form.name.placeholder': 'שם מלא',
+                'form.age.label': 'גיל *',
+                'form.select': 'בחר/י',
+                'form.grade.label': 'כיתה *',
+                'form.grade.7': "ז'", 'form.grade.8': "ח'", 'form.grade.9': "ט'",
+                'form.grade.10': "י'", 'form.grade.11': 'י"א', 'form.grade.12': 'י"ב',
+                'form.school.label': 'בית ספר *',
+                'form.school.placeholder': 'שם בית הספר',
+                'form.phone.label': 'טלפון (לוואטסאפ) *',
+                'form.day.label': 'איזה יום מתאים לך יותר?',
+                'form.day.sun': 'ראשון', 'form.day.mon': 'שני', 'form.day.tue': 'שלישי',
+                'form.day.wed': 'רביעי', 'form.day.thu': 'חמישי', 'form.flexible': 'גמיש',
+                'form.time.label': 'איזה חלון זמן מתאים לך יותר?',
+                'form.chips.label': 'מה הכי דיבר אליך? (אפשר לבחור כמה)',
+                'form.chip1': 'להכיר אנשים חדשים',
+                'form.chip2': 'להרגיש יותר שייך/ת',
+                'form.chip3': 'לקבל משהו לעצמי',
+                'form.chip4': 'להיות חלק ממשהו עם משמעות',
+                'form.chip5': 'וייב טוב / קבוצה טובה',
+                'form.motivation.label': 'מה גרם לך לרצות להצטרף? <span class="font-normal text-brand-subtle">(לא חובה)</span>',
+                'form.motivation.placeholder': 'ספר/י לנו בכמה מילים...',
+                'form.submit': 'להשאיר פרטים למעגל הקרוב 🚀',
+                'form.success.title': 'איזה כיף, הפרטים התקבלו!',
+                'form.success.desc': 'ניצור איתך קשר ממש בקרוב עם פרטים על המעגל הקרוב שמתאים לגיל שלך.',
+                'form.success.back': 'חזרה לדף',
+                'footer.title': 'עולים על הגל',
+                'footer.subtitle': 'מבית התדר',
+                'footer.partner': 'בשיתוף עיריית נתניה',
+                'footer.copy': '© 2026 עולים על הגל. כל הזכויות שמורות.',
+            },
+            ru: {
+                'page.title': 'Олим аль а-Гал | Тедер — группы для подростков в Нетании',
+                'nav.logo2': 'Лого мэрии<br>Нетании',
+                'nav.title': 'Олим аль а-Гал',
+                'nav.subtitle': 'от Тедер',
+                'nav.cta': 'Записаться ✨',
+                'hero.badge': 'Для тинейджеров Нетании · Иврит + Русский · Маленькие группы',
+                'hero.h1.line1': 'Хватит просто убивать время.',
+                'hero.h1.line2': 'Место, где ты найдёшь своих и почувствуешь себя дома.',
+                'hero.desc': '«Олим аль а-Гал» — группы для тинейджеров, которые хотят познакомиться с новыми людьми, говорить честно, почувствовать себя частью чего-то и получить что-то настоящее.<br>Встречи проходят на иврите и русском.',
+                'hero.cta': 'Оставить заявку на ближайшую группу 🚀',
+                'hero.subtext': 'Можно прийти, даже если никого не знаешь 💛',
+                'hero.official': 'Официальная программа мэрии Нетании и центра Тедер',
+                'hero.card.text': 'Без давления. Без осуждения. С крутыми людьми. 🤝',
+                'why.label': 'Зачем вообще приходить? 🤔',
+                'why.h2': 'Иногда всё, что нужно — правильное место, хорошие люди и группа, где можно быть просто <span class="text-gradient-warm">собой.</span>',
+                'why.card1.title': 'Новые люди',
+                'why.card1.desc': 'Познакомишься со сверстниками из разных мест и заведёшь новых друзей.',
+                'why.card2.title': 'Что-то для себя',
+                'why.card2.desc': 'Больше уверенности, больше связи с собой и место, где можно быть собой.',
+                'why.card3.title': 'Настоящая встреча',
+                'why.card3.desc': 'Не просто убивать время — стать частью группы с крутой атмосферой и чем-то реальным.',
+                'what.label': 'Что происходит на встречах? 🎯',
+                'what.h2': 'Знакомимся, общаемся, <span class="text-gradient">говорим честно.</span>',
+                'what.desc': 'На встречах знакомимся, разговариваем по-честному, делаем групповые активности и создаём атмосферу, где есть внимание, связь и кайф.',
+                'what.item1.title': 'Знакомимся с новыми людьми',
+                'what.item1.desc': 'Подростки из разных мест, в открытой и непредвзятой атмосфере.',
+                'what.item2.title': 'Говорим честно',
+                'what.item2.desc': 'Разговоры на равных, без понтов и без давления.',
+                'what.item3.title': 'Делаем групповые активности',
+                'what.item3.desc': 'Игры, упражнения, активности, которые объединяют и заряжают.',
+                'what.item4.title': 'Встречаем крутого ментора',
+                'what.item4.desc': 'Каждую группу ведёт профессиональный ментор с реальным опытом работы с тинейджерами.',
+                'what.footer': 'Это не урок. Это не терапия. И это не очередная скучная программа. 🙅',
+                'who.label': 'Кому это подходит? 🎯',
+                'who.h2': 'Это для тебя, если хочешь:',
+                'who.chip1': 'Познакомиться с новыми людьми 👋',
+                'who.chip2': 'Почувствовать себя своим 💜',
+                'who.chip3': 'Стать частью группы с хорошим вайбом 🔥',
+                'who.chip4': 'Немного выйти из рутины 🌊',
+                'who.chip5': 'Найти место, которое ощущается настоящим 🌟',
+                'who.cta': 'Кажется, это для меня ✌️',
+                'trust.label': 'Почему это ощущается иначе? 💡',
+                'trust.h2': 'Место для встреч, связи <span class="text-gradient">и ощущения себя частью чего-то.</span>',
+                'trust.card1.title': 'Маленькие группы',
+                'trust.card1.desc': 'Личная и уютная атмосфера — не массовая, не напряжённая.',
+                'trust.card2.title': 'Профессиональный ментор',
+                'trust.card2.desc': 'Сопровождение специалиста, который реально умеет работать с тинейджерами.',
+                'trust.card3.title': 'Иврит + Русский',
+                'trust.card3.desc': 'Пространство для связи между разными подростками города — на иврите и русском.',
+                'trust.footer': 'Для старшеклассников: программа засчитывается как часы социальной вовлечённости. 📝',
+                'faq.label': 'Часто задаваемые вопросы ❓',
+                'faq.h2': 'Перед тем как присоединиться',
+                'faq.q1': 'Нужно приходить с кем-то?',
+                'faq.a1': 'Совсем нет. Многие приходят одни — и в этом весь смысл: познакомиться с новыми людьми, даже если пришёл без друга.',
+                'faq.q2': 'Подойдёт, даже если я стеснительный/ая?',
+                'faq.a2': 'Да! Не обязательно быть общительным или «своим в доску». Здесь есть место и для тех, кому нужно время раскрыться.',
+                'faq.q3': 'Обязательно говорить?',
+                'faq.a3': 'Нет. Можно просто слушать, чувствовать атмосферу и входить в ритм в своём темпе.',
+                'faq.q4': 'На каком языке это проходит?',
+                'faq.a4': 'Встречи проводятся на иврите и русском, чтобы создать открытое пространство для разных подростков города.',
+                'faq.q5': 'Кто ведёт встречи?',
+                'faq.a5': 'Каждую группу ведёт профессиональный и вдохновляющий ментор с опытом работы с тинейджерами.',
+                'faq.q6': 'Как понять, что это для меня?',
+                'faq.a6': 'Если что-то здесь отозвалось — стоит оставить заявку и узнать о ближайшей группе.',
+                'form.label': 'Присоединиться к ближайшей группе 🎉',
+                'form.h2': 'Чувствуешь, что это твоё?',
+                'form.desc': 'Оставь заявку, выбери удобное время — и мы свяжемся с тобой по поводу ближайшей группы. Без давления, без обязательств.',
+                'form.name.label': 'Полное имя *',
+                'form.name.placeholder': 'Полное имя',
+                'form.age.label': 'Возраст *',
+                'form.select': 'Выбери',
+                'form.grade.label': 'Класс *',
+                'form.grade.7': '7-й класс', 'form.grade.8': '8-й класс', 'form.grade.9': '9-й класс',
+                'form.grade.10': '10-й класс', 'form.grade.11': '11-й класс', 'form.grade.12': '12-й класс',
+                'form.school.label': 'Школа *',
+                'form.school.placeholder': 'Название школы',
+                'form.phone.label': 'Телефон (WhatsApp) *',
+                'form.day.label': 'Какой день тебе больше подходит?',
+                'form.day.sun': 'Воскресенье', 'form.day.mon': 'Понедельник', 'form.day.tue': 'Вторник',
+                'form.day.wed': 'Среда', 'form.day.thu': 'Четверг', 'form.flexible': 'Гибко',
+                'form.time.label': 'Какое время тебе больше подходит?',
+                'form.chips.label': 'Что тебя больше всего зацепило? (можно выбрать несколько)',
+                'form.chip1': 'Познакомиться с новыми людьми',
+                'form.chip2': 'Почувствовать себя своим',
+                'form.chip3': 'Получить что-то для себя',
+                'form.chip4': 'Стать частью чего-то значимого',
+                'form.chip5': 'Хороший вайб / крутая группа',
+                'form.motivation.label': 'Что побудило тебя хотеть присоединиться? <span class="font-normal text-brand-subtle">(необязательно)</span>',
+                'form.motivation.placeholder': 'Расскажи нам в нескольких словах...',
+                'form.submit': 'Оставить заявку на ближайшую группу 🚀',
+                'form.success.title': 'Отлично, заявка получена! 🎉',
+                'form.success.desc': 'Мы свяжемся с тобой совсем скоро с деталями о ближайшей группе, подходящей для твоего возраста.',
+                'form.success.back': 'Вернуться на страницу',
+                'footer.title': 'Олим аль а-Гал',
+                'footer.subtitle': 'от Тедер',
+                'footer.partner': 'В партнёрстве с мэрией Нетании',
+                'footer.copy': '© 2026 Олим аль а-Гал. Все права защищены.',
+            }
+        };
+
+        // ─── LANGUAGE ENGINE ──────────────────────────────────────────────────────
+        let currentLang = localStorage.getItem('lang') || 'he';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            const html = document.getElementById('html-root');
+            const body = document.body;
+
+            if (lang === 'ru') {
+                html.setAttribute('lang', 'ru');
+                html.setAttribute('dir', 'ltr');
+                body.classList.replace('lang-he', 'lang-ru');
+                document.getElementById('btn-he').classList.remove('active');
+                document.getElementById('btn-ru').classList.add('active');
+            } else {
+                html.setAttribute('lang', 'he');
+                html.setAttribute('dir', 'rtl');
+                body.classList.replace('lang-ru', 'lang-he');
+                document.getElementById('btn-ru').classList.remove('active');
+                document.getElementById('btn-he').classList.add('active');
+            }
+
+            const t = translations[lang];
+            document.title = t['page.title'];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key] !== undefined) el.placeholder = t[key];
+            });
+            document.querySelectorAll('[data-i18n-opt]').forEach(el => {
+                const key = el.getAttribute('data-i18n-opt');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // ─── LEAD SUBMISSION ──────────────────────────────────────────────────────
         const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgrAc2XV4KfVLQssF_gFNobv2hYuQqdlXvtFlVPtCQIlrozOqCe0F975ysSEA3ZEwfjw/exec';
 
         lucide.createIcons();
@@ -589,11 +857,12 @@
 
         async function submitForm(event) {
             event.preventDefault();
-
             const button = event.target.querySelector('button[type="submit"]');
-            const originalText = button.innerHTML;
+            const originalHTML = button.innerHTML;
             const form = document.getElementById('tederForm');
+
             const payload = {
+                lang: currentLang,
                 fullName: document.getElementById('fullName').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 age: document.getElementById('age').value,
@@ -601,7 +870,7 @@
                 school: document.getElementById('school').value.trim(),
                 preferredDay: document.getElementById('preferredDay').value,
                 preferredTimeWindow: document.getElementById('preferredTime').value,
-                interests: Array.from(document.querySelectorAll('input[id^="chip"]:checked')).map((input) => {
+                interests: Array.from(document.querySelectorAll('input[id^="chip"]:checked')).map(input => {
                     const label = document.querySelector('label[for="' + input.id + '"]');
                     return label ? label.textContent.trim() : '';
                 }).filter(Boolean),
@@ -610,7 +879,7 @@
                 userAgent: navigator.userAgent
             };
 
-            button.innerHTML = '<i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i> שולח...';
+            button.innerHTML = '<i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i>';
             lucide.createIcons();
             button.disabled = true;
             button.classList.add('opacity-80');
@@ -622,16 +891,19 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(payload)
                 });
-
                 form.classList.add('hidden');
                 document.getElementById('successState').classList.remove('hidden');
                 document.getElementById('successState').classList.add('flex');
             } catch (error) {
-                alert('לא הצלחנו לשלוח את הפרטים כרגע. נסו שוב בעוד רגע.');
+                const msg = currentLang === 'ru'
+                    ? 'Не удалось отправить заявку. Попробуй ещё раз.'
+                    : 'לא הצלחנו לשלוח את הפרטים כרגע. נסו שוב בעוד רגע.';
+                alert(msg);
             } finally {
-                button.innerHTML = originalText;
+                button.innerHTML = originalHTML;
                 button.disabled = false;
                 button.classList.remove('opacity-80');
+                lucide.createIcons();
             }
         }
 
@@ -642,7 +914,7 @@
             document.getElementById('successState').classList.remove('flex');
         }
 
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(event) {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (!target) return;
@@ -651,7 +923,6 @@
             });
         });
 
-        // Scroll-driven animations via IntersectionObserver
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -661,9 +932,10 @@
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            scrollObserver.observe(el);
-        });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
+
+        // Apply saved/default language on load
+        setLang(currentLang);
     </script>
 </body>
 </html>
