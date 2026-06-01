@@ -185,6 +185,13 @@
             align-items: center;
             gap: 4px;
         }
+        @media (max-width: 767.98px) {
+            #navbar [data-i18n="nav.title"],
+            #navbar [data-i18n="nav.subtitle"],
+            #navbar [data-i18n="nav.cta"] {
+                display: none;
+            }
+        }
         @media (prefers-reduced-motion: reduce) {
             .animate-on-scroll { opacity: 1; transform: none; transition: none; }
             .animate-float, .animate-float-slow { animation: none; }
